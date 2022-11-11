@@ -1,14 +1,14 @@
-package com.test.win;
+package component;
 
 import javax.swing.*;
 
 
-
 /**
  * 基础按钮 创建需要定义名称和触发事件
- * @author wangbingchen
+ * @author 389561407@qq.com
+ * @version 1.0
  * @since 2022-11-10
- **/
+ */
 public class WButton extends JButton {
 
     private WButtonRun wButtonRun = new WButtonRunDefault();

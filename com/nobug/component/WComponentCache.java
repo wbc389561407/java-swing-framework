@@ -1,17 +1,18 @@
-package com.test.win;
+package component;
 
-import javax.swing.*;
 import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
 
 
+
 /**
  * 组件库 所有组件都存在这里
- * @author wangbingchen
- * @since 2022-11-10
- **/
-public class JComponentPool {
+ * @author 389561407@qq.com
+ * @version 1.0
+ * @since 2022-11-11
+ */
+public class WComponentCache{
 
     //显示器的宽
     public static int WIDTH;
@@ -20,15 +21,15 @@ public class JComponentPool {
 
     public static WActionListener listener = new WActionListener();
 
-    public static Map<String,WButton> buttonMap = new HashMap<>();
+    public static Map<String, WButton> buttonMap = new HashMap<>();
 
-    public static Map<String,WFrame> frameMap = new HashMap<>();
+    public static Map<String, WFrame> frameMap = new HashMap<>();
 
-    public static Map<String,WPanel> panelMap = new HashMap<>();
+    public static Map<String, WPanel> panelMap = new HashMap<>();
 
-    public static Map<String,WTextField> textFieldMap = new HashMap<>();
+    public static Map<String, WTextField> textFieldMap = new HashMap<>();
 
-    public static Map<String,WLabel> labelMap = new HashMap<>();
+    public static Map<String, WLabel> labelMap = new HashMap<>();
 
 
     /**
@@ -88,7 +89,7 @@ public class JComponentPool {
         return createWLabel(title,size,Color.black);
     }
 
-    public static WLabel createWLabel(String title, int size,Color color) {
+    public static WLabel createWLabel(String title, int size, Color color) {
         WLabel wLabel = new WLabel();
         wLabel.setText(title);
         int width = WIDTH/2;

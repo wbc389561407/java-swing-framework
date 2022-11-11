@@ -1,4 +1,4 @@
-package com.test.win;
+package component;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -6,9 +6,10 @@ import java.awt.event.ActionListener;
 
 /**
  * 监听器类
- * @author wangbingchen
+ * @author 389561407@qq.com
+ * @version 1.0
  * @since 2022-11-10
- **/
+ */
 public class WActionListener implements ActionListener {
 
     @Override

@@ -1,6 +1,6 @@
-package com.test.win;
 
 import com.sun.management.OperatingSystemMXBean;
+import component.*;
 
 import java.awt.*;
 import java.lang.management.ManagementFactory;
@@ -9,11 +9,11 @@ import java.util.Properties;
 public class Demo {
 
     public static void main(String[] args) {
-        WFrame frame = JComponentPool.createWFrame("检测电脑信息");
-        WPanel panel = JComponentPool.createWPanel("主面板");
+        WFrame frame = WComponentCache.createWFrame("检测电脑信息");
+        WPanel panel = WComponentCache.createWPanel("主面板");
         frame.add(panel);
 
-        WButton button = JComponentPool.createWButton("开始检测", new WButtonRun() {
+        WButton button = WComponentCache.createWButton("开始检测", new WButtonRun() {
             @Override
             public void run() {
                 String osUser = System.getProperty("user.name");
@@ -42,19 +42,19 @@ public class Demo {
             }
         });
 
-        WLabel wLabel = JComponentPool.createWLabel("电脑信息检测工具",30);
+        WLabel wLabel = WComponentCache.createWLabel("电脑信息检测工具",30);
 
-        WLabel wLabel11 = JComponentPool.createWLabel("检测报告如下：",25);
+        WLabel wLabel11 = WComponentCache.createWLabel("检测报告如下：",25);
         wLabel11.setS(wLabel);
 
 
-        WLabel wLabel1 = JComponentPool.createWLabel("1:",25,Color.RED);
-        WLabel wLabel2 = JComponentPool.createWLabel("2:",25,Color.RED);
-        WLabel wLabel3 = JComponentPool.createWLabel("3:",25,Color.RED);
-        WLabel wLabel4 = JComponentPool.createWLabel("4:",25,Color.RED);
-        WLabel wLabel5 = JComponentPool.createWLabel("5:",25,Color.RED);
-        WLabel wLabel6 = JComponentPool.createWLabel("6:",25,Color.RED);
-        WLabel wLabel7 = JComponentPool.createWLabel("7:",25,Color.RED);
+        WLabel wLabel1 = WComponentCache.createWLabel("1:",25,Color.RED);
+        WLabel wLabel2 = WComponentCache.createWLabel("2:",25,Color.RED);
+        WLabel wLabel3 = WComponentCache.createWLabel("3:",25,Color.RED);
+        WLabel wLabel4 = WComponentCache.createWLabel("4:",25,Color.RED);
+        WLabel wLabel5 = WComponentCache.createWLabel("5:",25,Color.RED);
+        WLabel wLabel6 = WComponentCache.createWLabel("6:",25,Color.RED);
+        WLabel wLabel7 = WComponentCache.createWLabel("7:",25,Color.RED);
         wLabel1.setS(wLabel11);
         wLabel2.setS(wLabel1);
         wLabel3.setS(wLabel2);
