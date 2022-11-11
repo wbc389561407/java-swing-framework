@@ -1,11 +1,13 @@
 package com.test.win;
 
+import com.sun.management.OperatingSystemMXBean;
 import lombok.SneakyThrows;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.lang.management.ManagementFactory;
 import java.util.Properties;
 
 /**
@@ -103,9 +105,7 @@ public class LayoutTest extends JFrame{
         // TODO 自动生成的方法存根
         LayoutTest fLayout = new LayoutTest("fLayout");
 
-        String osUser=System.getProperty("user.name");
-
-
+        String osUser = System.getProperty("user.name");
 
         Properties props=System.getProperties(); //获得系统属性集
          String osName = props.getProperty("os.name"); //操作系统名称
@@ -116,12 +116,36 @@ public class LayoutTest extends JFrame{
         System.out.println(osName);
         System.out.println(osVersion);
         System.out.println(osUser);
+        System.out.println(memoryLoad());
+
 
 //        new LayoutTest("gLayout");
 //        new LayoutTest("bLayout");
 //        new LayoutTest("cLayout");
 
     }
+
+    private static OperatingSystemMXBean osmxb = (OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean();
+
+    public static double memoryLoad() {
+        double totalPhysicalMemorySize = osmxb.getTotalPhysicalMemorySize();
+        double freePhysicalMemorySize = osmxb.getFreePhysicalMemorySize();
+        double value = freePhysicalMemorySize/totalPhysicalMemorySize;
+        int percentMemoryLoad = (int) ((1-value)*10000);
+        return percentMemoryLoad*0.01;
+    }
+
+    public static int cpuLoad() {
+
+        double cpuLoad = osmxb.getSystemCpuLoad();
+
+        int percentCpuLoad = (int) (cpuLoad * 100);
+
+        return percentCpuLoad;
+
+    }
+
+
 
 
 }
