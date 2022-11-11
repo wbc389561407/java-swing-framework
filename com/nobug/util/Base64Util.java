@@ -96,10 +96,8 @@ public class Base64Util {
             }
             out.write(b);
         } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         } finally {
             out.flush();
