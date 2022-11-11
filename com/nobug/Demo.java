@@ -13,7 +13,7 @@ public class Demo {
         WPanel panel = WComponentCache.createWPanel("主面板");
         frame.add(panel);
 
-        WButton button = WComponentCache.createWButton("开始检测", new WButtonRun() {
+        WButton button = WComponentCache.createWButton("开始检测", new WComponent() {
             @Override
             public void run() {
                 String osUser = System.getProperty("user.name");
@@ -29,14 +29,14 @@ public class Demo {
                 System.out.println(osName);
                 System.out.println(osVersion);
 
-                pool.labelMap.get("1:").setText("1:登录用户为："+osUser);
-                pool.labelMap.get("2:").setText("2:操作系统名称为："+osName);
-                pool.labelMap.get("3:").setText("3:操作系统构架为："+osArch);
-                pool.labelMap.get("4:").setText("4:操作系统版本为："+osVersion);
-                pool.labelMap.get("5:").setText("5:当前内存占用为："+v+"%");
+                WComponentCache.labelMap.get("1:").setText("1:登录用户为："+osUser);
+                WComponentCache.labelMap.get("2:").setText("2:操作系统名称为："+osName);
+                WComponentCache.labelMap.get("3:").setText("3:操作系统构架为："+osArch);
+                WComponentCache.labelMap.get("4:").setText("4:操作系统版本为："+osVersion);
+                WComponentCache.labelMap.get("5:").setText("5:当前内存占用为："+v+"%");
                 Dimension dim = frame.getToolkit().getScreenSize();//获取桌面像素
-                pool.labelMap.get("6:").setText("6:显示器宽度为："+ dim.width);
-                pool.labelMap.get("7:").setText("7:显示器高度为："+ dim.height);
+                WComponentCache.labelMap.get("6:").setText("6:显示器宽度为："+ dim.width);
+                WComponentCache.labelMap.get("7:").setText("7:显示器高度为："+ dim.height);
 
 
             }
@@ -74,7 +74,8 @@ public class Demo {
         panel.add(wLabel);
         panel.add(wLabel11);
 
-
+        WTextField wTextField = WComponentCache.createWTextField("a", "321312312");
+        wTextField.setS(wLabel7);
 
 
         frame.repaint();

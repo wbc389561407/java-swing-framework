@@ -18,7 +18,7 @@ public class WActionListener implements ActionListener {
 
         //实现按钮点击后自动运行指定操作
         if(source instanceof WButton){
-            ((WButton) source).getWButtonRun().run();
+            ((WButton) source).run();
         }
 
 

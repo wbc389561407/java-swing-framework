@@ -5,31 +5,46 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-
 /**
  * 组件库 所有组件都存在这里
  * @author 389561407@qq.com
  * @version 1.0
  * @since 2022-11-11
  */
-public class WComponentCache{
+public interface WComponentCache1 {
+
 
     //显示器的宽
-    public static int WIDTH;
+    int WIDTH = getWidth();
+    int WINDOWS_WIDTH = getWidth();
+
+    static int getWidth() {
+        return getDimension().width;
+    }
+
     //显示器的高
-    public static int HEIGHT;
+    int HEIGHT = getHeight();
+    int WINDOWS_HEIGHT = getHeight();
 
-    public static WActionListener listener = new WActionListener();
+    static int getHeight() {
+        return getDimension().height;
+    }
 
-    public static Map<String, WButton> buttonMap = new HashMap<>();
+    static Dimension getDimension() {
+        return Toolkit.getDefaultToolkit().getScreenSize();//获取桌面像素
+    }
 
-    public static Map<String, WFrame> frameMap = new HashMap<>();
+    WActionListener listener = new WActionListener();
 
-    public static Map<String, WPanel> panelMap = new HashMap<>();
+    Map<String, WButton> buttonMap = new HashMap<>();
 
-    public static Map<String, WTextField> textFieldMap = new HashMap<>();
+    Map<String, WFrame> frameMap = new HashMap<>();
 
-    public static Map<String, WLabel> labelMap = new HashMap<>();
+    Map<String, WPanel> panelMap = new HashMap<>();
+
+    Map<String, WTextField> textFieldMap = new HashMap<>();
+
+    Map<String, WLabel> labelMap = new HashMap<>();
 
 
     /**
@@ -37,7 +52,7 @@ public class WComponentCache{
      * @param title
      * @return
      */
-    public static WButton createWButton(String title) {
+    static WButton createWButton(String title) {
         WButton wButton = new WButton(title);
         int width = WIDTH/2;
         int height = HEIGHT/2;
@@ -54,21 +69,21 @@ public class WComponentCache{
      * @param wComponent
      * @return
      */
-    public static WButton createWButton(String title, WComponent wComponent) {
+    static WButton createWButton(String title, WComponent wComponent) {
         return createWButton(title).bindClick(wComponent);
     }
 
 
 
 
-    public static WPanel createWPanel(String title) {
+    static WPanel createWPanel(String title) {
         WPanel wPanel = new WPanel();
         panelMap.put(title,wPanel);
 
         return wPanel;
     }
 
-    public static WTextField createWTextField(String name, String value) {
+    static WTextField createWTextField(String name, String value) {
         WTextField wTextField = new WTextField(value);
         int width = WIDTH/2;
         int height = HEIGHT/2;
@@ -79,11 +94,11 @@ public class WComponentCache{
     }
 
 
-    public static WLabel createWLabel(String title, int size) {
+    static WLabel createWLabel(String title, int size) {
         return createWLabel(title,size,Color.black);
     }
 
-    public static WLabel createWLabel(String title, int size, Color color) {
+    static WLabel createWLabel(String title, int size, Color color) {
         WLabel wLabel = new WLabel();
         wLabel.setText(title);
         int width = WIDTH/2;
@@ -96,13 +111,11 @@ public class WComponentCache{
     }
 
 
-    public static WFrame createWFrame(String title) {
+    static WFrame createWFrame(String title) {
         WFrame wFrame = new WFrame(title);
-        Dimension dim = wFrame.getToolkit().getScreenSize();//获取桌面像素
-        WIDTH = dim.width;
-        HEIGHT = dim.height;
         wFrame.setBounds(WIDTH/4,HEIGHT/4,WIDTH/2,HEIGHT/2);
         frameMap.put(title,wFrame);
         return wFrame;
     }
+
 }
