@@ -17,10 +17,13 @@ public class WLabel extends JLabel implements WComponent{
         return newInstance(key,title,20,Color.BLACK);
     }
 
+    public static WLabel newInstance(String key, int size) {
+        return newInstance(key,"",size,Color.BLACK);
+    }
+
     public static WLabel newInstance(String key, String title, int size) {
         return newInstance(key,title,size,Color.BLACK);
     }
-
 
     public static WLabel newInstance(String key, String title, int size, Color color) {
         WLabel wLabel = new WLabel();
@@ -34,24 +37,28 @@ public class WLabel extends JLabel implements WComponent{
         return wLabel;
     }
 
-    public static WLabel getInstance(String label1) {
-        return labelMap.get(label1);
+
+    public static WLabel getInstance(String key) {
+        return labelMap.get(key);
     }
 
 
-    public WLabel createWLabel(String title, int size) {
-        return createWLabel(title,size,Color.black);
+    public WLabel createS(String key, String title) {
+        return createS(key, title, 20, Color.BLACK);
     }
 
-    public WLabel createWLabel(String title, int size, Color color) {
-        WLabel wLabel = new WLabel();
-        wLabel.setText(title);
-        int width = WINDOWS_WIDTH/2;
-        int height = WINDOWS_HEIGHT/2;
-        wLabel.setBounds(width/5,height/24,width/2,size);
-        wLabel.setFont(new Font(null, 1, size));
-        wLabel.setForeground(color);
-        labelMap.put(title,wLabel);
+    public WLabel createS(String key, int size) {
+        return createS(key, "", size, Color.BLACK);
+    }
+
+    public WLabel createS(String key, String title, int size)  {
+        return createS(key, title, size, Color.BLACK);
+    }
+
+    public WLabel createS(String key, String title, int size, Color color)  {
+        WLabel wLabel = newInstance(key, title, size, color);
+        wLabel.setS(this);
+        wLabel.bindParent(parent);
         return wLabel;
     }
 
@@ -78,4 +85,7 @@ public class WLabel extends JLabel implements WComponent{
     public void clearText() {
         this.setText("");
     }
+
+
+
 }

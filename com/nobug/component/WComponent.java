@@ -6,7 +6,7 @@ package component;
  * @version 1.0
  * @since 2022-11-11
  */
-public interface WComponent extends WComponentCache1{
+public interface WComponent extends WComponentCache{
 
     //重写 run 在被点击时触发
     void run();

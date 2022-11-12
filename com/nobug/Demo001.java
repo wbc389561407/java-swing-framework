@@ -17,7 +17,7 @@ public class Demo001 {
             @Override
             public void run() {
                 System.out.println("点击了");
-                WButton wButton1 = WComponentCache1.buttonMap.get("btn2");
+                WButton wButton1 = WButton.buttonMap.get("btn2");
                 wButton1.remove();
 
             }
@@ -28,7 +28,7 @@ public class Demo001 {
             @Override
             public void run() {
                 System.out.println("点击了");
-                WButton wButton1 = WComponentCache1.buttonMap.get("btn1");
+                WButton wButton1 = WButton.buttonMap.get("btn1");
                 wButton1.remove();
 
             }

@@ -21,6 +21,15 @@ public class WTextField extends JTextField implements WComponent{
     }
 
 
+
+    public static WTextField newInstance(String key) {
+        return newInstance(key,null,0);
+    }
+
+    public static WTextField newInstance(String key, int size) {
+        return newInstance(key,null,size);
+    }
+
     public static WTextField newInstance(String key, String value,int size) {
         WTextField wTextField;
         if(value == null){
@@ -38,14 +47,6 @@ public class WTextField extends JTextField implements WComponent{
     }
 
 
-    public static WTextField newInstance(String key, int size) {
-        return newInstance(key,null,size);
-    }
-
-
-    public static WTextField newInstance(String key) {
-        return newInstance(key,null,0);
-    }
 
 
     public void setS(WLabel component) {

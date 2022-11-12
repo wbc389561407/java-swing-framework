@@ -1,9 +1,7 @@
 package component;
 
 import javax.swing.*;
-import java.awt.*;
 
-import static component.WComponentCache1.WIDTH;
 
 /**
  * @author 389561407@qq.com
