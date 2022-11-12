@@ -2,6 +2,8 @@ package component;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -10,27 +12,27 @@ import java.awt.*;
  * @version 1.0
  * @since 2022-11-10
  */
-public class WButton extends JButton implements WComponent{
+public class WButton extends ComponentBase{
 
-    private Container parent;
 
+    private static final Map<String, WButton> BUTTON_MAP = new HashMap<>();
+
+    //操作的事件
     private WComponent wComponent;
 
-    public WButton(String title) {
-        super(title);
+    private WButton(String key) {
+        super(JButton.class);
+        BUTTON_MAP.put(key,this);
     }
 
-    public WButton(String title, WComponent wComponent) {
-        super(title);
-        this.wComponent = wComponent;
-    }
 
     public static WButton getInstance(String key) {
-        return buttonMap.get(key);
+        return BUTTON_MAP.get(key);
     }
 
     public WButton bindClick(WComponent wComponent) {
         this.wComponent = wComponent;
+        WActionListener.put(getJButton(),this);
         return this;
     }
 
@@ -38,19 +40,23 @@ public class WButton extends JButton implements WComponent{
     public static WButton newInstance(String key, String title, WComponent wComponent) {
         WButton wButton = newInstance(key, title);
         wButton.bindClick(wComponent);
-        buttonMap.put(key,wButton);
         return wButton;
     }
 
 
     public static WButton newInstance(String key,String title) {
-        WButton wButton = new WButton(title);
+        WButton wButton = new WButton(key);
+        JButton jButton = wButton.getJButton();
+        jButton.setText(title);
         int width = WINDOWS_WIDTH/2;
         int height = WINDOWS_HEIGHT/2;
-        wButton.setBounds(width/5,height*3/4,width/2,height/8);
-        wButton.addActionListener(listener);
-        buttonMap.put(key,wButton);
+        jButton.setBounds(width/5,height*3/4,width/2,height/8);
         return wButton;
+    }
+
+
+    private JButton getJButton() {
+        return getObj(JButton.class);
     }
 
 
@@ -61,21 +67,4 @@ public class WButton extends JButton implements WComponent{
         }
     }
 
-
-    public void bindParent(Container container) {
-        parent = container;
-        container.add(this);
-    }
-
-    public void remove() {
-        if(parent != null){
-            parent.remove(this);
-            parent.repaint();
-        }
-    }
-
-
-    public void setS(WButton component) {
-        setBounds(component.getX(),component.getY()+component.getHeight(),component.getWidth(),this.getFont().getSize());
-    }
 }

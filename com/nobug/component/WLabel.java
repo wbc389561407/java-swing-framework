@@ -2,16 +2,24 @@ package component;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author 389561407@qq.com
  * @version 1.0
  * @since 2022-11-11
  */
-public class WLabel extends JLabel implements WComponent{
+public class WLabel extends ComponentBase {
 
-    private Container parent;
 
+    private final static Map<String, WLabel> LABEL_MAP = new HashMap<>();
+
+
+    private WLabel(String key) {
+        super(JLabel.class);
+        LABEL_MAP.put(key,this);
+    }
 
     public static WLabel newInstance(String key, String title) {
         return newInstance(key,title,20,Color.BLACK);
@@ -26,20 +34,24 @@ public class WLabel extends JLabel implements WComponent{
     }
 
     public static WLabel newInstance(String key, String title, int size, Color color) {
-        WLabel wLabel = new WLabel();
-        wLabel.setText(title);
+        WLabel wLabel = new WLabel(key);
+        JLabel obj = wLabel.getJLabel();
+        obj.setText(title);
         int width = WINDOWS_WIDTH/2;
         int height = WINDOWS_HEIGHT/2;
-        wLabel.setBounds(width/5,height/24,width,25+size);
-        wLabel.setFont(new Font(null, 1, 20+size));
-        wLabel.setForeground(color);
-        labelMap.put(key,wLabel);
+        obj.setBounds(width/5,height/24,width,25+size);
+        obj.setFont(new Font(null, 1, 20+size));
+        obj.setForeground(color);
         return wLabel;
+    }
+
+    private JLabel getJLabel() {
+        return getObj(JLabel.class);
     }
 
 
     public static WLabel getInstance(String key) {
-        return labelMap.get(key);
+        return LABEL_MAP.get(key);
     }
 
 
@@ -57,35 +69,15 @@ public class WLabel extends JLabel implements WComponent{
 
     public WLabel createS(String key, String title, int size, Color color)  {
         WLabel wLabel = newInstance(key, title, size, color);
-        wLabel.setS(this);
-        wLabel.bindParent(parent);
+        wLabel.setAtS(this);
+        wLabel.bindParent(this.parent);
         return wLabel;
     }
 
 
-    public void setS(JComponent component) {
-        setBounds(component.getX(),component.getY()+component.getHeight(),component.getWidth(),this.getFont().getSize());
-    }
-
-    @Override
-    public void run() {
-
-    }
-
-    public void bindParent(Container container) {
-        parent = container;
-        container.add(this);
-    }
-
-    public void remove() {
-        parent.remove(this);
-        parent.repaint();
-    }
-
     public void clearText() {
-        this.setText("");
+        getJLabel().setText("");
     }
-
 
 
 }

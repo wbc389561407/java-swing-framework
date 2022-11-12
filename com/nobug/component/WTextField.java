@@ -2,24 +2,35 @@ package component;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author 389561407@qq.com
  * @version 1.0
  * @since 2022-11-11
  */
-public class WTextField extends JTextField implements WComponent{
+public class WTextField extends ComponentBase{
 
-    private Container parent;
 
-    public WTextField() {
-        super();
+    private static final Map<String, WTextField> TEXT_FIELD_MAP = new HashMap<>();
+
+
+    private WTextField(String key, String value, int size) {
+        super(JTextField.class);
+        JTextField jTextField = getJTextField();
+        jTextField.setText(value);
+        int width = WINDOWS_WIDTH/2;
+        int height = WINDOWS_HEIGHT/2;
+        jTextField.setBounds(width/5,height/12,width/2,25+size);
+        jTextField.setFont(new Font(null,1,20+size));
+        TEXT_FIELD_MAP.put(key,this);
+        WActionListener.put(jTextField,this);
     }
 
-    public WTextField(String value) {
-        super(value);
+    private JTextField getJTextField() {
+        return getObj(JTextField.class);
     }
-
 
 
     public static WTextField newInstance(String key) {
@@ -31,18 +42,12 @@ public class WTextField extends JTextField implements WComponent{
     }
 
     public static WTextField newInstance(String key, String value,int size) {
-        WTextField wTextField;
-        if(value == null){
-            wTextField = new WTextField();
-        }else {
-            wTextField = new WTextField(value);
-        }
+        WTextField wTextField = new WTextField(key, value,size);
         int width = WINDOWS_WIDTH/2;
         int height = WINDOWS_HEIGHT/2;
         wTextField.setBounds(width/5,height/12,width/2,25+size);
         wTextField.setFont(new Font(null,1,20+size));
-        textFieldMap.put(key,wTextField);
-        wTextField.addActionListener(listener);
+        TEXT_FIELD_MAP.put(key,wTextField);
         return wTextField;
     }
 
@@ -54,18 +59,4 @@ public class WTextField extends JTextField implements WComponent{
     }
 
 
-    @Override
-    public void run() {
-
-    }
-
-    public void bindParent(Container container) {
-        parent = container;
-        container.add(this);
-    }
-
-    public void remove() {
-        parent.remove(this);
-        parent.repaint();
-    }
 }

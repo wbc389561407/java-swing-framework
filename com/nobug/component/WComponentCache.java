@@ -32,16 +32,9 @@ public interface WComponentCache {
         return Toolkit.getDefaultToolkit().getScreenSize();//获取桌面像素
     }
 
-    WActionListener listener = new WActionListener();
 
-    Map<String, WButton> buttonMap = new HashMap<>();
 
-    Map<String, WFrame> frameMap = new HashMap<>();
 
-    Map<String, WPanel> panelMap = new HashMap<>();
 
-    Map<String, WTextField> textFieldMap = new HashMap<>();
-
-    Map<String, WLabel> labelMap = new HashMap<>();
 
 }

@@ -2,25 +2,26 @@ package component;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author 389561407@qq.com
  * @version 1.0
  * @since 2022-11-11
  */
-public class WPanel extends JPanel implements WComponent{
+public class WPanel extends ComponentBase{
 
-    private Container parent;
+    private static final Map<String, WPanel> panelMap = new HashMap<>();
 
 
-    public WPanel(){
-        super(null);
+    public WPanel(String key){
+        super(JPanel.class);
+        panelMap.put(key,this);
     }
 
     public static WPanel newInstance(String key) {
-        WPanel wPanel = new WPanel();
-        panelMap.put(key,wPanel);
-        return wPanel;
+        return new WPanel(key);
     }
 
     public static WPanel getInstance(String key) {
@@ -34,8 +35,8 @@ public class WPanel extends JPanel implements WComponent{
      * @return
      */
     public WButton createWButton(String key,String title) {
-        WButton wButton = WButton.newInstance(key,title);
-        wButton.bindParent(this);
+        WButton wButton = WButton.newInstance(key, title);
+        wButton.bindParent(this.getObj());
         return wButton;
     }
 
@@ -45,46 +46,29 @@ public class WPanel extends JPanel implements WComponent{
      * @param title
      * @return
      */
-    public WButton createWButton(String key,String title, WComponent wComponent) {
+    public WButton createWButton(String key, String title, WComponent wComponent) {
         WButton wButton = WButton.newInstance(key, title, wComponent);
-        wButton.bindParent(this);
+        wButton.bindParent(this.getObj());
         return wButton;
     }
 
 
     public WLabel createWLabel(String key, String value) {
         WLabel wLabel = WLabel.newInstance(key, value);
-        wLabel.bindParent(this);
+        wLabel.bindParent(this.getObj());
         return wLabel;
     }
 
     public WLabel createWLabel(String key, String value, int size) {
         WLabel wLabel = WLabel.newInstance(key, value, size);
-        wLabel.bindParent(this);
+        wLabel.bindParent(this.getObj());
         return wLabel;
     }
 
     public WLabel createWLabel(String key, String value, int size, Color color) {
         WLabel wLabel = WLabel.newInstance(key, value, size, color);
-        wLabel.bindParent(this);
+        wLabel.bindParent(this.getObj());
         return wLabel;
-    }
-
-
-    @Override
-    public void run() {
-
-    }
-
-    public void bindParent(Container container) {
-        parent = container;
-        container.add(this);
-        container.revalidate();
-    }
-
-    public void remove() {
-        parent.remove(this);
-        parent.repaint();
     }
 
 

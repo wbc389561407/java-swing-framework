@@ -8,6 +8,8 @@ package component;
  */
 public interface WComponent extends WComponentCache{
 
+//    WActionListener LISTENER = WActionListener.getInstance();
+
     //重写 run 在被点击时触发
     void run();
 
