@@ -1,6 +1,7 @@
 import com.sun.management.OperatingSystemMXBean;
 import component.*;
 import util.BigDecimalUtil;
+import util.SystemUtil;
 
 import java.awt.*;
 import java.lang.management.ManagementFactory;
@@ -13,6 +14,7 @@ import java.util.Properties;
  */
 public class Test {
     public static void main(String[] args) {
+
         WFrame wFrame = WFrame.newInstance("电脑基本信息检测");
         WPanel panel = wFrame.createWPanel("Panel");
         WLabel wLabel = panel.createWLabel("key1", "点击按钮检测一下你的电脑信息吧！");
@@ -38,11 +40,11 @@ public class Test {
                 WLabel.getInstance("wLabel2").setValue("操作系统名称："+osName);
                 WLabel.getInstance("wLabel3").setValue("操作系统构架："+osArch);
                 WLabel.getInstance("wLabel4").setValue("操作系统版本："+osVersion);
-                WLabel.getInstance("wLabel5").setValue("当前内存占用："+memoryLoad()+"%");
-                long totalMemorySize = getTotalMemorySize();
+                WLabel.getInstance("wLabel5").setValue("当前内存占用："+SystemUtil.memoryLoad()+"%");
+                long totalMemorySize = SystemUtil.getTotalMemorySize();
                 WLabel.getInstance("wLabel6").setValue("您的运行内存为："+totalMemorySize+"G");
-                WLabel.getInstance("wLabel7").setValue("当前空闲内存为："+getFreePhysicalMemorySize()+"G");
-                WLabel.getInstance("wLabel8").setValue("当前使用内存为："+getNoFreePhysicalMemorySize()+"G");
+                WLabel.getInstance("wLabel7").setValue("当前空闲内存为："+SystemUtil.getFreePhysicalMemorySize()+"G");
+                WLabel.getInstance("wLabel8").setValue("当前使用内存为："+SystemUtil.getNoFreePhysicalMemorySize()+"G");
                 Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();//获取桌面像素
 
                 String value = "屏幕宽"+dim.getWidth()+"     屏幕高"+dim.getHeight();
@@ -51,31 +53,5 @@ public class Test {
         });
     }
 
-    private static OperatingSystemMXBean osmxb = (OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean();
 
-    public static long getTotalMemorySize() {
-        double totalPhysicalMemorySize = osmxb.getTotalPhysicalMemorySize();
-        return Math.round(totalPhysicalMemorySize / 1024 / 1024 / 1024);
-    }
-
-
-    public static String getNoFreePhysicalMemorySize() {
-        return BigDecimalUtil.getInstance(String.valueOf(getTotalMemorySize())).subtract(getFreePhysicalMemorySize()).getStringVal(2);
-
-    }
-
-
-    public static String getFreePhysicalMemorySize() {
-        double totalPhysicalMemorySize = osmxb.getFreePhysicalMemorySize();
-        return  BigDecimalUtil.getInstance(totalPhysicalMemorySize).divide(1024)
-                .divide(1024).divide(1024).getStringVal(2);
-    }
-
-
-    public static String memoryLoad() {
-        double totalPhysicalMemorySize = osmxb.getTotalPhysicalMemorySize();
-        double freePhysicalMemorySize = osmxb.getFreePhysicalMemorySize();
-        return BigDecimalUtil.getInstance(totalPhysicalMemorySize).subtract(freePhysicalMemorySize)
-                .divide(totalPhysicalMemorySize).multiply(100).getStringVal(2);
-    }
 }
