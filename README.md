@@ -6,32 +6,47 @@ java是一个全能型的语言，但是桌面应用一直没有找到好用的�
 #### 软件架构
 基于 原生 jdk8 封装
 
-
-#### 安装教程
-
-1.  xxxx
-2.  xxxx
-3.  xxxx
-
 #### 使用说明
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+1.  一句话创建窗口
+```
+WFrame wFrame = WFrame.newInstance("这个是一个窗口");
+```
+2.  在窗口上添加面板
+```
+WPanel panel = wFrame.createWPanel("Panel");
+```
+3.  在面板上添加一个标题
+```
+WLabel wLabel = panel.createWLabel("key1", "这是一个标题");
+```
+4.  在面板上添加一个输入框
+```
+WTextField wTextField = panel.createWTextField("TextField1", "这是一个输入框", 20);
+```
+5.  在面板上添加一个按键
+```
+WTextField wTextField = panel.createWTextField("TextField1", "这是一个输入框", 20);
+```
+6.  给按键绑定触发事件
+```
+        wButton.bindClick(new WComponent() {
+            @Override
+            public void run() {
+                System.out.println("按键被点击了");
+            }
+        });
+```
 
-#### 参与贡献
+7.  检测电脑信息代码
+```
+        wButton.bindClick(new WComponent() {
+            @Override
+            public void run() {
+                System.out.println("按键被点击了");
+            }
+        });
+```
 
-1.  Fork 本仓库
-2.  新建 Feat_xxx 分支
-3.  提交代码
-4.  新建 Pull Request
 
 
-#### 特技
-
-1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2.  Gitee 官方博客 [blog.gitee.com](https://blog.gitee.com)
-3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解 Gitee 上的优秀开源项目
-4.  [GVP](https://gitee.com/gvp) 全称是 Gitee 最有价值开源项目，是综合评定出的优秀开源项目
-5.  Gitee 官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  Gitee 封面人物是一档用来展示 Gitee 会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)

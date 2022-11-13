@@ -70,6 +70,18 @@ public class WPanel extends ComponentBase{
     /**
      * 创建一个区域显示文字，并且绑定到当前面板上
      * @param key WLabel 库唯一 id
+     * @return 新 WLabel 对象
+     */
+    public WLabel createWLabel(String key) {
+        WLabel wLabel = WLabel.newInstance(key);
+        wLabel.bindParent(this);
+        return wLabel;
+    }
+
+
+    /**
+     * 创建一个区域显示文字，并且绑定到当前面板上
+     * @param key WLabel 库唯一 id
      * @param value 显示内容
      * @return 新 WLabel 对象
      */
@@ -121,5 +133,26 @@ public class WPanel extends ComponentBase{
     private WPanel() {
 
     }
+
+    public WTextField createWTextField(String key) {
+        WTextField wTextField = WTextField.newInstance(key);
+        wTextField.bindParent(this);
+        return wTextField;
+    }
+
+
+    public WTextField createWTextField(String key, int size) {
+        WTextField wTextField = WTextField.newInstance(key, size);
+        wTextField.bindParent(this);
+        return wTextField;
+    }
+
+
+    public WTextField createWTextField(String key, String value, int size) {
+        WTextField wTextField = WTextField.newInstance(key, value, size);
+        wTextField.bindParent(this);
+        return wTextField;
+    }
+
 
 }

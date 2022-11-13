@@ -48,7 +48,12 @@ public class WFrame extends ComponentBase{
      * @return WFrame对象
      */
     public static WFrame getInstance(String title) {
-        return FRAME_MAP.get(title);
+        WFrame wFrame = FRAME_MAP.get(title);
+        if(wFrame == null){
+            return newInstance(title);
+        }else {
+            return wFrame;
+        }
     }
 
 

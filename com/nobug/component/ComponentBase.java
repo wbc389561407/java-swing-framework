@@ -153,11 +153,11 @@ public class ComponentBase extends Container implements WComponent{
         parent.setLastY(y+obj.getHeight());
         parent.setLastWidth(width);
         parent.setLastHeight(height);
-        System.out.println("相对上级的坐标位置");
-        System.out.println("X:"+parent.getLastX());
-        System.out.println("Y:"+parent.getLastY());
-        System.out.println("宽:"+parent.getLastWidth());
-        System.out.println("高:"+parent.getLastHeight());
+//        System.out.println("相对上级的坐标位置");
+//        System.out.println("X:"+parent.getLastX());
+//        System.out.println("Y:"+parent.getLastY());
+//        System.out.println("宽:"+parent.getLastWidth());
+//        System.out.println("高:"+parent.getLastHeight());
     }
 
 
@@ -257,7 +257,7 @@ public class ComponentBase extends Container implements WComponent{
         }
 
         String parentMethod = getParentMethod();
-        System.out.println("上级方法为："+parentMethod);
+//        System.out.println("上级方法为："+parentMethod);
         try {
             Class<?> aClass = obj.getClass();
             Method setDefaultCloseOperation = aClass.getMethod(parentMethod, classes);

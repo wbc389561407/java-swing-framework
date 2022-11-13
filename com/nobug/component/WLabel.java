@@ -32,6 +32,16 @@ public class WLabel extends ComponentBase {
     /**
      * 新建一个对象
      * @param key 组件唯一 id
+     * @return WLabel对象
+     */
+    public static WLabel newInstance(String key) {
+        return newInstance(key,"",20,Color.BLACK);
+    }
+
+
+    /**
+     * 新建一个对象
+     * @param key 组件唯一 id
      * @param title 显示内容
      * @return WLabel对象
      */
@@ -70,13 +80,17 @@ public class WLabel extends ComponentBase {
      */
     public static WLabel newInstance(String key, String title, int size, Color color) {
         WLabel wLabel = new WLabel(key);
-        wLabel.setText(title);
+        wLabel.setValue(title);
         int width = WINDOWS_WIDTH/2;
         int height = WINDOWS_HEIGHT/2;
         wLabel.setBounds(width/5,height/24,width,25+size);
         wLabel.setFont(new Font(null, 1, 20+size));
         wLabel.setForeground(color);
         return wLabel;
+    }
+
+    public void setValue(String title) {
+        setText(title);
     }
 
 
