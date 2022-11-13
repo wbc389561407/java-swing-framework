@@ -38,15 +38,8 @@ WTextField wTextField = panel.createWTextField("TextField1", "这是一个输入
         });
 ```
 
-7.  检测电脑信息代码
-```
-        wButton.bindClick(new WComponent() {
-            @Override
-            public void run() {
-                System.out.println("按键被点击了");
-            }
-        });
-```
+7.  检测电脑信息代码 根目录下 Test
+
 
 
 

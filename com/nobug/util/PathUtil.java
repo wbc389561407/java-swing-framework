@@ -1,8 +1,5 @@
 package util;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-
 /**
  * @author 389561407@qq.com
  * @version 1.0

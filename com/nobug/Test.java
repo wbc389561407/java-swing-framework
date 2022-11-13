@@ -1,10 +1,7 @@
-import com.sun.management.OperatingSystemMXBean;
 import component.*;
-import util.BigDecimalUtil;
 import util.SystemUtil;
 
 import java.awt.*;
-import java.lang.management.ManagementFactory;
 import java.util.Properties;
 
 /**
@@ -13,6 +10,7 @@ import java.util.Properties;
  * @since 2022-11-13
  */
 public class Test {
+
     public static void main(String[] args) {
 
         WFrame wFrame = WFrame.newInstance("电脑基本信息检测");
