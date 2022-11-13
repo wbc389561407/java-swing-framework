@@ -4,7 +4,6 @@ import util.BigDecimalUtil;
 
 import java.awt.*;
 import java.lang.management.ManagementFactory;
-import java.math.BigDecimal;
 import java.util.Properties;
 
 /**
