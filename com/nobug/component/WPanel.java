@@ -1,6 +1,5 @@
 package component;
 
-import javax.swing.*;
 import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
@@ -12,64 +11,115 @@ import java.util.Map;
  */
 public class WPanel extends ComponentBase{
 
-    private static final Map<String, WPanel> panelMap = new HashMap<>();
+
+    /**
+     * WPanel 组件库
+     */
+    private static final Map<String, WPanel> PANEL_MAP = new HashMap<>();
 
 
-    public WPanel(String key){
-        super(JPanel.class);
-        panelMap.put(key,this);
-    }
 
+
+    /**
+     * 新建对象
+     * @param key WPanel 组件唯一 id
+     * @return 新 WPanel 对象
+     */
     public static WPanel newInstance(String key) {
         return new WPanel(key);
     }
 
+
+    /**
+     * 从 WPanel 组件库中获取对象
+     * @param key WPanel 组件唯一 id
+     * @return WPanel 对象
+     */
     public static WPanel getInstance(String key) {
-        return panelMap.get(key);
+        return PANEL_MAP.get(key);
     }
 
 
     /**
-     * 创建一个带监听的按钮
-     * @param title
-     * @return
+     * 创建一个新按钮，显示在此面板上
+     * @param key WButton 组件唯一 id
+     * @param title 按钮名称
+     * @return 新 WButton 对象
      */
     public WButton createWButton(String key,String title) {
         WButton wButton = WButton.newInstance(key, title);
-        wButton.bindParent(this.getObj());
+        wButton.bindParent(this);
         return wButton;
     }
 
 
     /**
-     * 创建一个带监听的 绑定执行事件的按钮
-     * @param title
-     * @return
+     * 创建一个新按钮，显示在此面板上
+     * @param key WButton 组件唯一 id
+     * @param title 按钮名称
+     * @param wComponent 触发事件
+     * @return 新 WButton 对象
      */
     public WButton createWButton(String key, String title, WComponent wComponent) {
         WButton wButton = WButton.newInstance(key, title, wComponent);
-        wButton.bindParent(this.getObj());
+        wButton.bindParent(this);
         return wButton;
     }
 
 
+    /**
+     * 创建一个区域显示文字，并且绑定到当前面板上
+     * @param key WLabel 库唯一 id
+     * @param value 显示内容
+     * @return 新 WLabel 对象
+     */
     public WLabel createWLabel(String key, String value) {
         WLabel wLabel = WLabel.newInstance(key, value);
-        wLabel.bindParent(this.getObj());
+        wLabel.bindParent(this);
         return wLabel;
     }
 
+
+    /**
+     * 创建一个区域显示文字，并且绑定到当前面板上
+     * @param key WLabel 库唯一 id
+     * @param value 显示内容
+     * @param size 字体大小
+     * @return 新 WLabel 对象
+     */
     public WLabel createWLabel(String key, String value, int size) {
         WLabel wLabel = WLabel.newInstance(key, value, size);
-        wLabel.bindParent(this.getObj());
+        wLabel.bindParent(this);
         return wLabel;
     }
 
+    /**
+     * 创建一个区域显示文字，并且绑定到当前面板上
+     * @param key WLabel 库唯一 id
+     * @param value 显示内容
+     * @param size 字体大小
+     * @param color 字体颜色
+     * @return 新 WLabel 对象
+     */
     public WLabel createWLabel(String key, String value, int size, Color color) {
         WLabel wLabel = WLabel.newInstance(key, value, size, color);
-        wLabel.bindParent(this.getObj());
+        wLabel.bindParent(this);
         return wLabel;
     }
 
+
+    public void bindParent(ComponentBase container) {
+        container.getObj().add(this.getObj());
+    }
+
+
+    private WPanel(String key){
+        super(new WPanel());
+        PANEL_MAP.put(key,this);
+    }
+
+    private WPanel() {
+
+    }
 
 }

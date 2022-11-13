@@ -21,8 +21,12 @@ public class WButton extends ComponentBase{
     private WComponent wComponent;
 
     private WButton(String key) {
-        super(JButton.class);
+        super(new WButton());
         BUTTON_MAP.put(key,this);
+    }
+
+    private WButton() {
+
     }
 
 
@@ -32,7 +36,7 @@ public class WButton extends ComponentBase{
 
     public WButton bindClick(WComponent wComponent) {
         this.wComponent = wComponent;
-        WActionListener.put(getJButton(),this);
+        WActionListener.addActionListener(this);
         return this;
     }
 
@@ -46,17 +50,11 @@ public class WButton extends ComponentBase{
 
     public static WButton newInstance(String key,String title) {
         WButton wButton = new WButton(key);
-        JButton jButton = wButton.getJButton();
-        jButton.setText(title);
+        wButton.setText(title);
         int width = WINDOWS_WIDTH/2;
         int height = WINDOWS_HEIGHT/2;
-        jButton.setBounds(width/5,height*3/4,width/2,height/8);
+        wButton.setBounds(width/5,height*3/4,width/2,height/8);
         return wButton;
-    }
-
-
-    private JButton getJButton() {
-        return getObj(JButton.class);
     }
 
 
