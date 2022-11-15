@@ -124,27 +124,5 @@ public class BigDecimalUtil {
         return this.bigDecimal.longValue();
     }
 
-    public static void main(String[] args) {
-        // 计算 100 除以 3 并且保留 2位小数 得到 Double 结果
-        Double doubleVal = BigDecimalUtil.getInstance("100").divide(3).getDoubleVal(2);
-        System.out.println(doubleVal);
-        // 计算 800 除以 6 并且保留 4位小数 得到 String 结果
-        String stringVal = BigDecimalUtil.getInstance(12.31).divide(6).getStringVal(4);
-        System.out.println(stringVal);
-
-        //详细说明 使用 BigDecimalUtil.getInstance() 初始化计算数字，可传 String参数或者 double 参数
-        // 接着调用
-        // 加 add()
-        // 减 subtract()
-        // 乘 multiply()
-        // 除 divide()
-        // 最后调用 getDoubleVal() getStringVal() getIntegerVal() 等方法 获取对应数据类型结果
-        //其中 getStringVal() 和 getDoubleVal() 可传 int 参数 为保留的小数位数
-        // setScale() 方法可以设置保留指定小数位数 后继续计算
-        //
-
-        System.out.println(BigDecimalUtil.getInstance(800).divide(3).multiply(3).getStringVal(2));
-
-    }
 
 }
