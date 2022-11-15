@@ -17,7 +17,7 @@ public class Test {
         WPanel panel = wFrame.createWPanel("Panel");
         WLabel wLabel = panel.createWLabel("key1", "点击按钮检测一下你的电脑信息吧！");
         WTextField wTextField = panel.createWTextField("TextField1", "", 20);
-        WButton wButton = panel.createWButton("Button", "清空输入框");
+        WButton wButton = panel.createWButton("Button", "检测电脑信息");
         WLabel wLabel1 = panel.createWLabel("wLabel1");
         WLabel wLabel2 = panel.createWLabel("wLabel2");
         WLabel wLabel3 = panel.createWLabel("wLabel3");

@@ -9,6 +9,9 @@ import java.io.IOException;
  * @since 2022-11-13
  */
 public class Test001 {
+
+     static Thread thread = null;
+
     public static void main(String[] args) {
         WFrame wFrame = WFrame.newInstance("关机程序");
         WPanel p = wFrame.createWPanel("p");
@@ -22,21 +25,22 @@ public class Test001 {
                     Runtime.getRuntime().exec("shutdown -s -t 10");
                     JOptionPane.showMessageDialog(null,"系统将在10秒后关机","系统提示！",1,new ImageIcon());
 
-                  new Thread(() ->{
-                    int num = 10;
-                    while (true){
-                        create.setValue("系统将在"+String.valueOf(num)+"秒后关机！！！");
-                        try {
-                            Thread.sleep(1000);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
+                    thread = new Thread(() ->{
+                        int num = 10;
+                        while (true){
+                            create.setValue("系统将在"+String.valueOf(num)+"秒后关机！！！");
+                            try {
+                                Thread.sleep(1000);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                            --num;
+                            if(num==0){
+                                return;
+                            }
                         }
-                        --num;
-                        if(num==0){
-                            return;
-                        }
-                    }
-                  }).start();
+                    });
+                    thread.start();
 
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -50,6 +54,8 @@ public class Test001 {
                 System.out.println("取消关机");
                 try {
                     Runtime.getRuntime().exec("shutdown -a");
+                    thread.stop();
+                    create.setValue("");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -58,4 +64,6 @@ public class Test001 {
 
 
     }
+
+
 }
